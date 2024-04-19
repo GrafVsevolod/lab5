@@ -1,7 +1,12 @@
 package commands;
 
 import managers.CollectionManager;
-
+/**
+ * вывести среднее значение поля annualTurnover для всех элементов коллекции
+ *
+ * @author GrafVsevolod
+ * @since 1.0
+ */
 public class AverageTurnCommand implements Command{
     @Override
     public void execute(String[] args){
