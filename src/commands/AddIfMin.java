@@ -9,7 +9,12 @@ import models.Organization;
 import models.OrganizationInput;
 
 import java.util.List;
-
+/**
+ * Добавляет новый элемент в коллекцию, если его значение меньше, чем у наименьшего элемента этой коллекции
+ *
+ * @author GrafVsevolod
+ * @since 1.0
+ */
 public class AddIfMin implements Command {
     @Override
     public void execute(String[] args) throws WrongArgumentException, BuildOrganizationException {
