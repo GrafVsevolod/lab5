@@ -5,6 +5,13 @@ import models.IdGenerator;
 import models.Organization;
 import models.OrganizationInput;
 
+/**
+ * Данная команда добавляет новый элемент в коллекцию
+ *
+ * @author GrafVsevolod
+ * @since 1.0
+ */
+
 public class AddCommand implements Command {
     @Override
     public void execute(String[] args) throws Exception{
