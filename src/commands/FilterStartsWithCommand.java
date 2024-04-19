@@ -5,7 +5,12 @@ import models.Organization;
 
 import java.util.ArrayList;
 import java.util.Scanner;
-
+/**
+ * выводит элементы, значение поля fullName которых начинается с заданной подстроки
+ *
+ * @author GrafVsevolod
+ * @since 1.0
+ */
 public class FilterStartsWithCommand implements Command{
     @Override
     public void execute(String[] args){
