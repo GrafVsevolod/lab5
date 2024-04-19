@@ -4,7 +4,12 @@ import managers.CollectionManager;
 import models.Organization;
 
 import java.util.LinkedList;
-
+/**
+ *  удаляет элемент из коллекции по его id
+ *
+ * @author GrafVsevolod
+ * @since 1.0
+ */
 public class RemoveCommand implements Command {
     @Override
     public void execute(String[] args){
