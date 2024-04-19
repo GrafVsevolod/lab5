@@ -1,5 +1,10 @@
 package commands;
-
+/**
+ *  выводит справку по доступным командам
+ *
+ * @author GrafVsevolod
+ * @since 1.0
+ */
 public class HelpCommand implements Command {
     @Override
     public void execute(String[] args) {
