@@ -8,7 +8,12 @@ import models.Organization;
 import models.OrganizationInput;
 
 import java.util.LinkedList;
-вывести в стандартный поток вывода все элементы коллекции в строковом представлении
+/**
+ *  обновить значение элемента коллекции, id которого равен заданному
+ *
+ * @author GrafVsevolod
+ * @since 1.0
+ */
 public class UpdateCommand implements Command {
     @Override
     public void execute(String[] args) throws NoElementException, WrongArgumentException, BuildOrganizationException {
