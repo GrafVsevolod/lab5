@@ -6,7 +6,12 @@ import models.*;
 import java.io.FileReader;
 import java.time.LocalDate;
 import java.util.Scanner;
-
+/**
+ * считывает и исполняет скрипт из указанного файла. В скрипте содержатся команды в таком же виде, в котором их вводит пользователь в интерактивном режиме.
+ *
+ * @author GrafVsevolod
+ * @since 1.0
+ */
 public class ExecuteScriptCommand implements Command{
     @Override
     public void execute(String[] args) throws Exception {
