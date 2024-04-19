@@ -1,7 +1,12 @@
 package commands;
 
 import managers.CollectionManager;
-
+/**
+ *  вывести в стандартный поток вывода информацию о коллекции (тип, дата инициализации, количество элементов и т.д.)
+ *
+ * @author GrafVsevolod
+ * @since 1.0
+ */
 public class InfoCommand implements Command {
     @Override
     public void execute(String[] args) throws Exception{
