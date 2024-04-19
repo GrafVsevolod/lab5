@@ -2,7 +2,12 @@ package commands;
 
 import managers.CollectionManager;
 import models.Organization;
-
+/**
+ *  выводит любой объект из коллекции, значение поля id которого является максимальным
+ *
+ * @author GrafVsevolod
+ * @since 1.0
+ */
 public class MaxByIdCommand implements Command{
     @Override
     public void execute(String[] args){
