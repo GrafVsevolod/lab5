@@ -2,40 +2,62 @@ package commands;
 
 import managers.CollectionManager;
 import models.Organization;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Marshaller;
-import javax.xml.bind.PropertyException;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.*;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.LinkedList;
 
 public class WriterXML {
-    public static void write(LinkedList<Organization> collection){
-        String filepath = "My_File.xml";
-
+    public static void write(){
+        LinkedList<Organization> orgsCollection = CollectionManager.getCollection();
+        String filepath = System.getenv("MY_TEXT_FILE");
         try{
-            File file = new File(filepath);
+            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+            Document doc = dBuilder.newDocument();
 
-            OrganizationsStorage organizationsStorage = new OrganizationsStorage();
-            for(Object org : collection.toArray()){
-                organizationsStorage.addOrganizationsToOrgs((Organization) org);
+            Element rootElement = doc.createElement("organizations");
+            doc.appendChild(rootElement);
+
+            for (Organization organization : orgsCollection) {
+                Element orgElement = doc.createElement("organization");
+
+                orgElement.setAttribute("id", String.valueOf(organization.getId()));
+                orgElement.setAttribute("name", organization.getName());
+                orgElement.setAttribute("CoordinateX", String.valueOf(organization.getCoordinates().getX()));
+                orgElement.setAttribute("CoordinateY", String.valueOf(organization.getCoordinates().getY()));
+                orgElement.setAttribute("creationDate", String.valueOf(organization.getCreationDate()));
+                orgElement.setAttribute("annualTurnover", String.valueOf(organization.getAnnualTurnover()));
+                orgElement.setAttribute("fullName", organization.getFullName());
+                orgElement.setAttribute("Organizationtype", String.valueOf(organization.getType()));
+                orgElement.setAttribute("zipCode", organization.getPostalAddress().getZipCode());
+                if (organization.getPostalAddress().getStreet() != null) {
+                    orgElement.setAttribute("street", organization.getPostalAddress().getStreet());
+                }
+                rootElement.appendChild(orgElement);
             }
+            TransformerFactory transformerFactory = TransformerFactory.newInstance();
+            Transformer transformer = transformerFactory.newTransformer();
+            transformer.setOutputProperty(OutputKeys.INDENT, "yes");
 
-            FileOutputStream fos = new FileOutputStream(file, false);
-            Writer outputStreamWriter = new BufferedWriter(new OutputStreamWriter(fos));
-
-            JAXBContext context = JAXBContext.newInstance(Organization.class, OrganizationsStorage.class);
-            Marshaller mar = context.createMarshaller();
-            mar.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-            mar.marshal(organizationsStorage, outputStreamWriter);
-
+            //Использую OutputStreamWriter для записи в файл
+            FileOutputStream fileOutputStream = new FileOutputStream(filepath);
+            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(fileOutputStream, StandardCharsets.UTF_8);
+            StreamResult result = new StreamResult(outputStreamWriter);
+            transformer.transform(new DOMSource(doc), result);
             outputStreamWriter.close();
-            System.out.println("Данные записаны в XML файл!");
-        } catch (FileNotFoundException | JAXBException e) {
-            throw new RuntimeException("Файл не найден!");
-        } catch (IOException e) {
-            throw new RuntimeException("Что-то пошло не так(");
+
+            System.out.println("Файл записан!");
+        } catch (TransformerException | IOException | ParserConfigurationException e) {
+            throw new RuntimeException(e);
         }
     }
 }

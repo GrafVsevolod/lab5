@@ -8,10 +8,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import java.util.LinkedList;
 
 
-@XmlRootElement
 public class OrganizationsStorage {
-    @XmlElementWrapper(name = "added-organizations", nillable = true)
-    @XmlElement
     public LinkedList<Organization> orgs = new LinkedList<>();
 
     public void addOrganizationsToOrgs(Organization organization){

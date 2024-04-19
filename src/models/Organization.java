@@ -1,7 +1,6 @@
 package models;
 
 import commands.Validator;
-import managers.LocalDateAdapter;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -15,7 +14,7 @@ public class Organization {
     private String name; //Поле не может быть null, Строка не может быть пустой
 
     private Coordinates coordinates; //Поле не может быть null
-    @XmlTransient
+
     private LocalDate creationDate; //Поле не может быть null, Значение этого поля должно генерироваться автоматически
 
     private Long annualTurnover; //Значение поля должно быть больше 0
@@ -108,8 +107,7 @@ public class Organization {
     public void setCoordinates(Coordinates coordinates) {
         this.coordinates = coordinates;
     }
-    @XmlElement(name = "creationdate")
-    @XmlJavaTypeAdapter(LocalDateAdapter.class)
+
     public LocalDate getCreationDate() {
         return creationDate;
     }

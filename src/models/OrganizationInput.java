@@ -142,8 +142,7 @@ public class OrganizationInput {
         postalAddress = new Address(c, d);
         organization.setPostalAddress(postalAddress);
 
-        System.out.println("End!");
-
+        System.out.println("An instance has been added to the collection");
         return organization;
     }
 }

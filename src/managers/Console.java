@@ -1,7 +1,5 @@
 package managers;
 
-import managers.CollectionManager;
-import managers.CommandManager;
 import models.IdGenerator;
 
 import java.io.InputStream;
@@ -16,6 +14,7 @@ public class Console {
         Scanner scanner = new Scanner(System.in);
         CollectionManager collectionManager = new CollectionManager();
         IdGenerator idGenerator = new IdGenerator();
+
 
         while(scanner.hasNextLine()){
             String command = scanner.nextLine();

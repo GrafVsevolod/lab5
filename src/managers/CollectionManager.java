@@ -1,5 +1,6 @@
 package managers;
 
+import commands.ReaderXML;
 import exceptions.NoElementException;
 import models.IdGenerator;
 import models.Organization;
@@ -14,6 +15,7 @@ public class CollectionManager {
     public CollectionManager(){
         list = new LinkedList<>();
         date = LocalDate.now();
+        ReaderXML.read();
     }
 
     public static LocalDate InitDate(){
@@ -21,9 +23,6 @@ public class CollectionManager {
     }
 
     public static void add(Organization organization){
-        if(list == null){
-            list = new LinkedList<>();
-        }
         list.add(organization);
         IdGenerator.add(organization.getId());
     }

@@ -19,6 +19,14 @@ public class CommandManager {
         commandList.put("remove", new RemoveCommand());
         commandList.put("clear", new ClearCommand());
         commandList.put("save", new SaveCommand());
+        commandList.put("execute", new ExecuteScriptCommand());
+        commandList.put("exit", new ExitCommand());
+        commandList.put("remove first", new RemoveFirstCommand());
+        commandList.put("remove head", new RemoveHeadCommand());
+        commandList.put("addMin", new AddIfMin());
+        commandList.put("average", new AverageTurnCommand());
+        commandList.put("Max by", new MaxByIdCommand());
+        commandList.put("filter starts", new FilterStartsWithCommand());
     }
 
     public void startExecuting(String arg)  throws Exception{
