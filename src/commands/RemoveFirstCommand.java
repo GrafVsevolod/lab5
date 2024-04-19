@@ -4,7 +4,12 @@ import managers.CollectionManager;
 import models.Organization;
 
 import java.util.LinkedList;
-
+/**
+ *  удаляет первый элемент из коллекции
+ *
+ * @author GrafVsevolod
+ * @since 1.0
+ */
 public class RemoveFirstCommand implements Command {
     @Override
     public void execute(String[] args){
