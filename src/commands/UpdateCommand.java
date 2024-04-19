@@ -8,7 +8,7 @@ import models.Organization;
 import models.OrganizationInput;
 
 import java.util.LinkedList;
-
+вывести в стандартный поток вывода все элементы коллекции в строковом представлении
 public class UpdateCommand implements Command {
     @Override
     public void execute(String[] args) throws NoElementException, WrongArgumentException, BuildOrganizationException {
